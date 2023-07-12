@@ -1,4 +1,4 @@
 Decompositon LU avec du C++
 
 
-<img src="https://github.com/WojciechMormul/lu-decomposition/blob/master/imgs/lu.png" width="500">
+<img src="https://github.com/mathias-kinninkpo/lu-decomposition/blob/main/imgs/lu.png" width="700" height="700">
