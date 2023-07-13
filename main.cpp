@@ -36,10 +36,10 @@ int main()
     // cout<<endl<<"=================== LU matrix decomposition ===================="<<endl<<endl;
 
     srand(time(0));
-    int N = 5;
-    std::cout << "VEUILLEZ ENTRER LA TAILLE DE LA MATRICE DU SYSTEME!\n" << std::endl;
+    int N = 4;
+    cout << "\n\n\n\n1. LECTURE DES MATRICES A ET B'\n\n\n";
+    std::cout << "Veuillez entrer d'abord la taille de la matrice associée de (S) :";
     cin >> N;
-
     Matrix A(N,N,"A",Matrix::as_matrix);
     std::cout << "VEUILLEZ ENTRER LA MATRICE A DU SYTEME (vous pouvez copier et coller)!\n" << std::endl;
     A.readMatrix();
@@ -51,11 +51,13 @@ int main()
     lu_decomp.find_decomposition(A);
     lu_decomp.forward_substitution(b);
     lu_decomp.backward_substitution();
-
+    cout << "\n\n\n2. L'AFFICHAGE DES MATRICES A ET B'\n\n\n";
     A.draw();
     b.draw();
+    cout << "\n\n\n\3. L'AFFICHAGE DES MATRICES L ET U'\n\n\n";
     lu_decomp.L->draw();
     lu_decomp.U->draw();
+    cout << "\n\n\n4. Le verteur X la solution de l'equation\n\n\n";
     lu_decomp.x->draw();
 
     return 0;

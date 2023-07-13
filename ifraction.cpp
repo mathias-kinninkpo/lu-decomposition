@@ -1,5 +1,6 @@
 #include <iostream>
 // #include <string>
+#include <cmath>
 #include "ifraction.h"
 
 
@@ -24,10 +25,37 @@ Fraction::Fraction(Fraction &f){
     this->quotient = f.quotient;
 }
 
-Fraction::Fraction(double a)
+Fraction::Fraction(double decimal)
 {
-    numerateur = a*1000;
-    denominateur = 1000;
+    const int MAX_DENOMINATOR = 10000000;
+    double absDecimal = std::abs(decimal);
+    double error = absDecimal;
+    int numerator = 0;
+    int denominator = 1;
+    int best_numerator = 0;
+    int best_denominator = 1;
+
+    while (denominator <= MAX_DENOMINATOR) {
+        numerator = static_cast<int>(absDecimal * denominator + 0.5);
+        error = std::abs(absDecimal - static_cast<double>(numerator) / denominator);
+
+        if (error < std::abs(absDecimal - static_cast<double>(best_numerator) / best_denominator)) {
+            best_numerator = numerator;
+            best_denominator = denominator;
+        }
+
+        if (error < 1e-9) {
+            break;
+        }
+
+        denominator++;
+    }
+
+    if (decimal < 0)
+        best_numerator = -best_numerator;
+    numerateur = best_numerator;
+    denominateur = best_denominator;
+
 }
 
 Fraction::Fraction(int num, int deno){
